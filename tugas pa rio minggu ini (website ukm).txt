@@ -1,0 +1,17 @@
+tugas membuat website pa rio deadline minggu ini hari bebas
+
+problem solving website development
+
+kasus: website ukm makanan lokal
+sebuah ukm menjual makanan tradisional
+(seperti kue basah, dll(kalo bisa jgn sama)) secara offline
+mereka ingin menjangkau lebih banyak pelanggan lewat website sederhana(gausah terlalu ribet website nya).
+
+Tugas:
+1. analisa apa saja yang perlu ditampilkan di website
+2. sketsa wireframe sederhana -> boleh di buku tulis
+3. pilih fitur utama misalnya katalog produk + tanggal whatsapp order (bebas berkreasi)
+4. buat tampilan website menggunakan html/css/framework css apapun -> gaboleh pake template
+gaperlu pake database
+
+minggu depan dipresentasikan

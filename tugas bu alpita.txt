@@ -1,0 +1,107 @@
+💻 1. Web Project – Add More CRUD Pages
+Even if not all of these are used fully, include:
+
+✅ Admin Panel:
+
+CRUD for Menu
+
+CRUD for Orders
+
+CRUD for Testimonials
+
+CRUD for Contacts
+
+CRUD for About Us
+
+✅ Separate Admin & User Interface
+
+Login page for admin (even if dummy)
+
+Public-facing user pages
+
+Bonus: Add dummy data entries and make forms long with multiple fields. Even if they’re not strictly necessary.
+
+📊 2. UML Diagrams – Add More Use Cases & Activities
+🔹 Use Case Diagram
+Include many roles and actions, such as:
+
+Admin:
+
+Add Menu
+
+Edit Menu
+
+Delete Menu
+
+View Orders
+
+Update Order Status
+
+Add Testimonial (on behalf of user)
+
+Update About Us
+
+User:
+
+View Menu
+
+Submit Order
+
+Submit Testimonial
+
+Contact Admin
+
+Tip: Use rectangles, stickmen, lines, extend/include — make it “full”.
+
+🔹 Activity Diagram
+Make at least 2 or 3 activity diagrams:
+
+Activity flow for Placing Order
+
+Activity flow for Managing Menu
+
+Activity flow for Viewing Testimonials
+
+Tip: Add decision diamonds (if/else), loops, etc. to make it detailed.
+
+🗃️ 3. ERD – Add More Tables & Fields
+Even if your site only needs a few tables, your teacher wants to see a forest.
+
+Here’s how to make it impressive:
+
+Suggested Tables:
+Users (id, name, email, password, role)
+
+Menus (id, title, image, price, category, availability, created_at)
+
+Orders (id, user_id, menu_id, quantity, total_price, status, created_at)
+
+Testimonials (id, user_id, message, rating, date_posted)
+
+Contacts (id, name, email, phone, message, responded)
+
+Custom_Orders (id, user_id, event_type, message, budget, date_needed)
+
+About_Us (id, title, description, image_url)
+
+Admins (id, username, password)
+
+Tip: Even if your site doesn’t use login yet, include user/admin distinction. Makes it “enterprise-level”.
+
+🎁 Bonus Moves (that make you look good):
+Draw.io Design: Use colors, icons, or labels — neat and complex diagrams look more serious.
+
+Add Comments to ERD: Like “Table to manage customer testimonials to improve credibility”.
+
+Create a README File: Add explanations of your logic for the ERD and UML (as PDF or DOC).
+
+Include Screenshots of your website in the final submission.
+
+Add validation to forms: required fields, error messages — even if basic.
+
+✅ Summary of What to Do
+Task	What to Add/Do
+Web Project	Add more CRUD pages (even dummy ones), separate admin panel
+UML	Add more actors/use cases, 2–3 activity diagrams
+ERD	Add 8+ tables, more fields per table, even if not all are used
+Bonus	Add login system (dummy), screenshots, form validations, explanations

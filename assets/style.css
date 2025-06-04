@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+body {
+    font-family: "Quicksand", sans-serif;
+    background-color: #FFFAFA;
+}
+
+.hero-section {
+    background-image: url(img/pcl\ ll\ rumah.png) !important;
+    height: 500px;
+    background-size: cover;
+}
+
+.navbar {
+    /* background-color: #FFB703 !important; */
+    background-color: #ffffffce !important;
+    padding: 0 !important;
+}
+
+.hero-items {
+    height: 500px;
+}
+
+.navbar-brand img{
+    width: 160px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.hero-items h1 {
+    font-weight: 700;
+    font-size: 50px;
+}
+
+.hero-items p {
+    font-size: 20px;
+}
+
+.nav-item {
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 8px;
+    margin-left: 8px;
+    transition: all .3s ease;
+}
+
+.nav-item:hover {
+    font-weight: 700;
+}
+
+.btn-warning {
+    background-color: #FFB703;
+}
+
+.section-title {
+    font-weight: 700;
+    border-bottom: #FFB703 3px solid;
+}
+
+
+.menu-section h5 {
+    margin-top: 15px;
+    font-weight: 600;
+    border-bottom: #FFB703 3px solid;
+    display: inline-block;
+}
+
+.menu-section .card {
+    margin-bottom: 30px;
+    margin-right: 7px;
+    margin-left: 7px;
+    border: #38383854 1px solid;
+    transition: all ease .3s;
+    text-align: center;
+    
+}
+
+.menu-section .card:hover {
+    box-shadow: 5px 10px #00000017;
+    border: #383838a6 1px solid;
+}
+
+.menu-section img {
+    border: #ffb8036e 2px solid;
+}
+
+.section-description {
+    font-weight: 500;
+    font-size: 17px;
+}
+
+
+
+.pesanan-section h5 {
+    font-weight: 600;
+    margin-top: 10px;
+    border-bottom: #00000017 3px solid;
+    display: inline-block;
+}
+
+.pesanan-section img {
+    border-radius: 10px;
+}
+
+.pesanan-item {
+    transition: all ease .3s;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pesanan-item:hover{
+    transform: translateY(-5px);
+}
+
+.pesanan-item-card:hover {
+    /* border: #FFB703 solid 3px; */
+    box-shadow: 10px 10px 17px -7px rgba(0,0,0,0.19);
+}
+
+.pesanan-item-card {
+    background-color: white;
+    /* background-color: #00000017; */
+    padding: 10px;
+    border-radius: 10px;
+    border: #FFB703 solid 1px;
+    transition: all ease .3s;
+}
+
+.pesanan-item-card img {
+    border: rgb(255, 255, 255) 1.3px solid;
+}
+
+.tentang { 
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px ;
+}
+
+.tentang p {
+    font-weight: 500;
+}
+
+.testimonials p {
+    font-weight: 500;
+}
+
+.testimonials .card {
+    transition: all ease .3s;
+
+}
+
+.testimonials .card:hover {
+    /* border: rgb(255, 184, 5) 1px solid; */
+    box-shadow: 0 0 0 1px rgba(255, 184, 5, 1), 0 0 0 1px rgba(255, 184, 5, 1) !important;
+}
+
+footer {
+    background-color: #FFB703;
+}
