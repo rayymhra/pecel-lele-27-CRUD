@@ -44,24 +44,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: index.php");
     exit;
 }
+
+include "../layout/navbar.php";
+include "../layout/sidebar.php";
 ?>
 
-<h2>Edit Menu</h2>
-<form method="POST" enctype="multipart/form-data">
-    <label>Nama:</label><br>
-    <input type="text" name="nama" value="<?= htmlspecialchars($menu['nama']) ?>" required><br><br>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark fw-bold">
+            Edit Menu
+        </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama Menu</label>
+                    <input type="text" class="form-control" name="nama" id="nama"
+                        value="<?= htmlspecialchars($menu['nama']) ?>" required>
+                </div>
 
-    <label>Deskripsi:</label><br>
-    <textarea name="deskripsi"><?= htmlspecialchars($menu['deskripsi']) ?></textarea><br><br>
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label">Deskripsi</label>
+                    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3"><?= htmlspecialchars($menu['deskripsi']) ?></textarea>
+                </div>
 
-    <label>Harga (Rp):</label><br>
-    <input type="number" name="harga" step="0.01" value="<?= $menu['harga'] ?>" required><br><br>
+                <div class="mb-3">
+                    <label for="harga" class="form-label">Harga (Rp)</label>
+                    <input type="number" class="form-control" name="harga" id="harga" step="0.01"
+                        value="<?= $menu['harga'] ?>" required>
+                </div>
 
-    <label>Gambar Saat Ini:</label><br>
-    <?php if ($menu['gambar']): ?>
-        <img src="../../uploads/<?= $menu['gambar'] ?>" width="100"><br>
-    <?php endif; ?>
-    <input type="file" name="gambar"><br><br>
+                <div class="mb-3">
+                    <label class="form-label">Gambar Saat Ini</label><br>
+                    <?php if ($menu['gambar']): ?>
+                        <img src="../../uploads/<?= $menu['gambar'] ?>" class="img-thumbnail mb-2" style="max-width: 150px;">
+                    <?php else: ?>
+                        <p class="text-muted">Belum ada gambar.</p>
+                    <?php endif; ?>
+                </div>
 
-    <button type="submit">Simpan Perubahan</button>
-</form>
+                <div class="mb-3">
+                    <label for="gambar" class="form-label">Ganti Gambar (Opsional)</label>
+                    <input class="form-control" type="file" name="gambar" id="gambar">
+                </div>
+
+                <button type="submit" class="btn btn-warning text-dark fw-semibold">
+                    <i class="bi bi-save"></i> Simpan Perubahan
+                </button>
+                <a href="index.php" class="btn btn-secondary ms-2">Batal</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<?php include "../layout/footer.php" ?>

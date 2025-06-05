@@ -17,15 +17,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: index.php");
     exit;
 }
+
+include "../layout/navbar.php";
+include "../layout/sidebar.php";
 ?>
 
-<h2>Edit Testimoni</h2>
-<form method="POST">
-    <label>Nama:</label><br>
-    <input type="text" name="nama" value="<?= htmlspecialchars($testimoni['nama']) ?>" required><br><br>
+<div class="container mt-4">
+    <h2 class="fw-bold mb-4">Edit Testimoni</h2>
 
-    <label>Isi Testimoni:</label><br>
-    <textarea name="isi" required><?= htmlspecialchars($testimoni['isi']) ?></textarea><br><br>
+    <form method="POST" class="shadow-sm p-4 rounded bg-light">
+        <div class="mb-3">
+            <label for="nama" class="form-label fw-semibold">Nama:</label>
+            <input type="text" class="form-control" name="nama" id="nama"
+                   value="<?= htmlspecialchars($testimoni['nama']) ?>" required>
+        </div>
 
-    <button type="submit">Simpan Perubahan</button>
-</form>
+        <div class="mb-3">
+            <label for="isi" class="form-label fw-semibold">Isi Testimoni:</label>
+            <textarea class="form-control" name="isi" id="isi" rows="4" required><?= htmlspecialchars($testimoni['isi']) ?></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-warning text-dark fw-semibold">
+            Update
+        </button>
+    </form>
+</div>
+
+
+<?php include "../layout/footer.php" ?>
+

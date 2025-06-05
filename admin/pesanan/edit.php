@@ -46,18 +46,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: index.php");
     exit;
 }
+
+include "../layout/navbar.php";
+include "../layout/sidebar.php";
 ?>
 
-<h2>Edit Pesanan</h2>
-<form method="POST" enctype="multipart/form-data">
-    <label>Nama Pesanan:</label><br>
-    <input type="text" name="nama" value="<?= htmlspecialchars($pesanan['nama']) ?>" required><br><br>
+<div class="container mt-4">
+    <h2 class="fw-bold mb-4">Edit Pesanan</h2>
 
-    <label>Gambar (kosongkan jika tidak diubah):</label><br>
-    <?php if ($pesanan['gambar']) : ?>
-        <img src="../../uploads/<?= $pesanan['gambar'] ?>" width="150"><br>
-    <?php endif; ?>
-    <input type="file" name="gambar"><br><br>
+    <form method="POST" enctype="multipart/form-data" class="card p-4 shadow-sm border-0">
+        <div class="mb-3">
+            <label class="form-label">Nama Pesanan:</label>
+            <input type="text" name="nama" value="<?= htmlspecialchars($pesanan['nama']) ?>" class="form-control" required>
+        </div>
 
-    <button type="submit">Update</button>
-</form>
+        <div class="mb-3">
+            <label class="form-label">Gambar Saat Ini:</label><br>
+            <?php if ($pesanan['gambar']) : ?>
+                <img src="../../uploads/<?= $pesanan['gambar'] ?>" width="150" class="img-thumbnail mb-2"><br>
+            <?php endif; ?>
+            <input type="file" name="gambar" class="form-control">
+            <div class="form-text">Kosongkan jika tidak ingin mengubah gambar.</div>
+        </div>
+
+        <div class="col-2">
+             <button type="submit" class="btn btn-warning fw-semibold text-dark">
+           Update
+        </button>
+        <a href="index.php" class="btn btn-secondary ms-2">Batal</a>
+        </div>
+       
+    </form>
+</div>
+
+
+<?php include "../layout/footer.php" ?>

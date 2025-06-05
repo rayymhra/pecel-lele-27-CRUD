@@ -27,21 +27,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: index.php");
     exit;
 }
+
+include "../layout/navbar.php";
+include "../layout/sidebar.php";
 ?>
 
-<h2>Tambah Menu</h2>
-<form method="POST" enctype="multipart/form-data">
-    <label>Nama:</label><br>
-    <input type="text" name="nama" required><br><br>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-warning text-dark fw-bold">
+            Tambah Menu
+        </div>
+        <div class="card-body">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="nama" class="form-label">Nama Menu</label>
+                    <input type="text" class="form-control" name="nama" id="nama" required>
+                </div>
 
-    <label>Deskripsi:</label><br>
-    <textarea name="deskripsi"></textarea><br><br>
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label">Deskripsi</label>
+                    <textarea class="form-control" name="deskripsi" id="deskripsi" rows="3"></textarea>
+                </div>
 
-    <label>Harga (Rp):</label><br>
-    <input type="number" name="harga" step="0.01" required><br><br>
+                <div class="mb-3">
+                    <label for="harga" class="form-label">Harga (Rp)</label>
+                    <input type="number" class="form-control" name="harga" id="harga" step="0.01" required>
+                </div>
 
-    <label>Gambar:</label><br>
-    <input type="file" name="gambar"><br><br>
+                <div class="mb-3">
+                    <label for="gambar" class="form-label">Gambar</label>
+                    <input class="form-control" type="file" name="gambar" id="gambar">
+                </div>
 
-    <button type="submit">Simpan</button>
-</form>
+                <button type="submit" class="btn btn-warning text-dark fw-semibold">
+                    <i class="bi bi-save"></i> Simpan
+                </button>
+                <a href="index.php" class="btn btn-secondary ms-2">Batal</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+<?php include "../layout/footer.php" ?>
+
