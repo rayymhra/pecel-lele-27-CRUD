@@ -1,26 +1,32 @@
 CRUD
 [] landing page using database
+
+# admin
 - auth
-[] login
-[] logout
+[v]{} login
+[]{} logout
 - dashboard
-[] index
-[] sidebar
-[] navbar
+[]{} index
+[]{} sidebar
+[]{} navbar
 - menu
-[] list
-[] add
-[] edit
-[] delete
+[v]{} list
+[v]{} add
+[v]{} edit
+[v]{} delete
 - pesanan
-[] list
-[] add
-[] edit
-[] delete
+[v]{} list
+[v]{} add
+[v]{} edit
+[v]{} delete
 - testimonial
-[] list
-[] add
-[] edit
-[] delete
+[v]{} list
+[v]{} add
+[v]{} edit
+[v]{} delete
 - contact
-[] edit -> can't be deleted, only uses 1 data for each lokasi, jam buka, catatan
+[]{} edit -> can't be deleted, only uses 1 data for each lokasi, jam buka, catatan
+
+# staff
+[] then make the order management
+
