@@ -1,0 +1,26 @@
+CRUD
+[] landing page using database
+- auth
+[] login
+[] logout
+- dashboard
+[] index
+[] sidebar
+[] navbar
+- menu
+[] list
+[] add
+[] edit
+[] delete
+- pesanan
+[] list
+[] add
+[] edit
+[] delete
+- testimonial
+[] list
+[] add
+[] edit
+[] delete
+- contact
+[] edit -> can't be deleted, only uses 1 data for each lokasi, jam buka, catatan

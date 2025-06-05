@@ -17,9 +17,7 @@
     />
   </head>
   <body>
-    <nav
-      class="navbar navbar-expand-lg bg-body-tertiary mx-5 rounded-pill mt-4 fixed-top shadow"
-    >
+    <nav class="navbar navbar-expand-lg bg-body-tertiary mx-5 rounded-pill mt-4 fixed-top shadow">
       <div class="container">
         <a class="navbar-brand" href="#"
           ><img src="assets/img/logo.png" alt=""
