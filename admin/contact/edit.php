@@ -17,18 +17,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: index.php");
     exit;
 }
+
+include "../layout/navbar.php";
+include "../layout/sidebar.php";
 ?>
 
-<h2>Edit Kontak</h2>
+<div class="container">
+    <h2 class="mb-4">Edit Kontak</h2>
 <form method="POST">
-    <label>Lokasi:</label><br>
-    <textarea name="lokasi" required><?= htmlspecialchars($kontak['lokasi']) ?></textarea><br><br>
+    <div class="mb-3">
+        <label>Lokasi:</label>
+        <textarea name="lokasi" required class="form-control"><?= htmlspecialchars($kontak['lokasi']) ?></textarea>
+    </div>
+    
+    <div class="mb-3">
+        <label>Jam Buka:</label>
+    <input type="text" class="form-control" name="jam_buka" value="<?= htmlspecialchars($kontak['jam_buka']) ?>" required>
+    </div>
+    
+    <div class="mb-3">
+        <label>Catatan:</label>
+    <textarea name="catatan" class="form-control" ><?= htmlspecialchars($kontak['catatan']) ?></textarea>
+    </div>
+    
 
-    <label>Jam Buka:</label><br>
-    <input type="text" name="jam_buka" value="<?= htmlspecialchars($kontak['jam_buka']) ?>" required><br><br>
-
-    <label>Catatan:</label><br>
-    <textarea name="catatan"><?= htmlspecialchars($kontak['catatan']) ?></textarea><br><br>
-
-    <button type="submit">Simpan</button>
+    <button type="submit" class="btn btn-warning">Simpan</button>
 </form>
+</div>
+
