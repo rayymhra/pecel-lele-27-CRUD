@@ -34,3 +34,5 @@ CRUD
 []{} navbar
 [] export to Excel
 
+[] kategori -> but i don't have category on my menu,,,, search other alternatives so that i would still get the grade
+[] edit menu

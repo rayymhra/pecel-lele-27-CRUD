@@ -4,6 +4,12 @@
       Staff Dashboard
     </div>
     <div class="list-group list-group-flush">
+    <a href="<?= base_url() ?>staff/menu/index.php" class="list-group-item list-group-item-action">
+        <i class="bi bi-list"></i> Menu
+      </a>
+    </div>
+
+    <div class="list-group list-group-flush">
       <a href="<?= base_url() ?>staff/orders/index.php" class="list-group-item list-group-item-action">
         <i class="bi bi-basket"></i> Pesanan
       </a>

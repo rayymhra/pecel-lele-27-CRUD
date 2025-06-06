@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $deskripsi = $_POST['deskripsi'];
     $harga = $_POST['harga'];
+    $stock = $_POST['stock'];
+    $status = $_POST['status'];
     $gambar = null;
 
     // Handle image upload
@@ -20,9 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Insert into DB
-    $stmt = $conn->prepare("INSERT INTO menu (nama, deskripsi, harga, gambar) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssds", $nama, $deskripsi, $harga, $gambar);
+    $stmt = $conn->prepare("INSERT INTO menu (nama, deskripsi, harga, stock, status, gambar) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssdiss", $nama, $deskripsi, $harga, $stock, $status, $gambar);
     $stmt->execute();
 
     header("Location: index.php");
@@ -59,6 +60,23 @@ include "../layout/sidebar.php";
                     <label for="gambar" class="form-label">Gambar</label>
                     <input class="form-control" type="file" name="gambar" id="gambar">
                 </div>
+
+                <div class="mb-3">
+                    <label>Stok:</label>
+                    <input type="number" name="stock" value="0" min="0" required class="form-control w-50">
+                </div>
+
+                <div class="mb-3">
+                    <label>Status:</label>
+                    <select name="status" required class="form-select">
+                        <option value="tersedia">Tersedia</option>
+                        <option value="habis">Habis</option>
+                    </select>
+                </div>
+
+
+
+
 
                 <button type="submit" class="btn btn-warning text-dark fw-semibold">
                     <i class="bi bi-save"></i> Simpan

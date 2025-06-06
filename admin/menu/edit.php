@@ -9,37 +9,38 @@ if (!$id) {
     exit;
 }
 
-// Fetch existing data
 $stmt = $conn->prepare("SELECT * FROM menu WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $menu = $result->fetch_assoc();
 
+if (!$menu) {
+    header("Location: index.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $deskripsi = $_POST['deskripsi'];
     $harga = $_POST['harga'];
-    $gambar = $menu['gambar']; // keep old if not replaced
+    $stock = $_POST['stock'];
+    $status = $_POST['status'];
+    $gambar = $menu['gambar'];
 
-    // Upload new image (optional)
+    // Handle image upload
     if (isset($_FILES['gambar']) && $_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
         $originalName = basename($_FILES['gambar']['name']);
         $filename = time() . '_' . $originalName;
         $targetPath = '../../uploads/' . $filename;
 
         if (move_uploaded_file($_FILES['gambar']['tmp_name'], $targetPath)) {
-            // Optionally delete old image
-            if ($menu['gambar'] && file_exists('../../uploads/' . $menu['gambar'])) {
-                unlink('../../uploads/' . $menu['gambar']);
-            }
             $gambar = $filename;
         }
     }
 
-    // Update DB
-    $stmt = $conn->prepare("UPDATE menu SET nama = ?, deskripsi = ?, harga = ?, gambar = ? WHERE id = ?");
-    $stmt->bind_param("ssdsi", $nama, $deskripsi, $harga, $gambar, $id);
+    $stmt = $conn->prepare("UPDATE menu SET nama=?, deskripsi=?, harga=?, stock=?, status=?, gambar=? WHERE id=?");
+    $stmt->bind_param("ssdissi", $nama, $deskripsi, $harga, $stock, $status, $gambar, $id);
     $stmt->execute();
 
     header("Location: index.php");
@@ -73,6 +74,15 @@ include "../layout/sidebar.php";
                     <input type="number" class="form-control" name="harga" id="harga" step="0.01"
                         value="<?= $menu['harga'] ?>" required>
                 </div>
+
+                <label>Stok:</label><br>
+    <input type="number" name="stock" min="0" value="<?= (int)$menu['stock'] ?>" required class="form-control"><br>
+
+    <label>Status:</label><br>
+    <select name="status" required class="form-select mb-3">
+        <option value="tersedia" <?= $menu['status'] === 'tersedia' ? 'selected' : '' ?>>Tersedia</option>
+        <option value="habis" <?= $menu['status'] === 'habis' ? 'selected' : '' ?>>Habis</option>
+    </select>
 
                 <div class="mb-3">
                     <label class="form-label">Gambar Saat Ini</label><br>
