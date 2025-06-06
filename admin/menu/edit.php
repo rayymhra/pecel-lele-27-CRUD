@@ -9,16 +9,19 @@ if (!$id) {
     exit;
 }
 
+// Get current menu data
 $stmt = $conn->prepare("SELECT * FROM menu WHERE id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
 $menu = $result->fetch_assoc();
-
 if (!$menu) {
     header("Location: index.php");
     exit;
 }
+
+// Get all categories
+$categories = $conn->query("SELECT * FROM categories ORDER BY name");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
@@ -26,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $harga = $_POST['harga'];
     $stock = $_POST['stock'];
     $status = $_POST['status'];
+    $category_id = $_POST['category_id'] ?? null;
     $gambar = $menu['gambar'];
 
     // Handle image upload
@@ -39,8 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $stmt = $conn->prepare("UPDATE menu SET nama=?, deskripsi=?, harga=?, stock=?, status=?, gambar=? WHERE id=?");
-    $stmt->bind_param("ssdissi", $nama, $deskripsi, $harga, $stock, $status, $gambar, $id);
+    // Update with category
+    $stmt = $conn->prepare("UPDATE menu SET nama=?, deskripsi=?, harga=?, stock=?, status=?, gambar=?, category_id=? WHERE id=?");
+    $stmt->bind_param("ssdissii", $nama, $deskripsi, $harga, $stock, $status, $gambar, $category_id, $id);
     $stmt->execute();
 
     header("Location: index.php");
@@ -75,14 +80,30 @@ include "../layout/sidebar.php";
                         value="<?= $menu['harga'] ?>" required>
                 </div>
 
-                <label>Stok:</label><br>
-    <input type="number" name="stock" min="0" value="<?= (int)$menu['stock'] ?>" required class="form-control"><br>
+                <div class="mb-3">
+                    <label class="form-label">Stok</label>
+                    <input type="number" name="stock" min="0" value="<?= (int)$menu['stock'] ?>" class="form-control" required>
+                </div>
 
-    <label>Status:</label><br>
-    <select name="status" required class="form-select mb-3">
-        <option value="tersedia" <?= $menu['status'] === 'tersedia' ? 'selected' : '' ?>>Tersedia</option>
-        <option value="habis" <?= $menu['status'] === 'habis' ? 'selected' : '' ?>>Habis</option>
-    </select>
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                    <select name="status" class="form-select" required>
+                        <option value="tersedia" <?= $menu['status'] === 'tersedia' ? 'selected' : '' ?>>Tersedia</option>
+                        <option value="habis" <?= $menu['status'] === 'habis' ? 'selected' : '' ?>>Habis</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Kategori</label>
+                    <select name="category_id" class="form-select" required>
+                        <option value="">-- Pilih Kategori --</option>
+                        <?php while ($row = $categories->fetch_assoc()): ?>
+                            <option value="<?= $row['id'] ?>" <?= $row['id'] == $menu['category_id'] ? 'selected' : '' ?>>
+                                <?= htmlspecialchars($row['name']) ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
 
                 <div class="mb-3">
                     <label class="form-label">Gambar Saat Ini</label><br>
@@ -106,6 +127,5 @@ include "../layout/sidebar.php";
         </div>
     </div>
 </div>
-
 
 <?php include "../layout/footer.php" ?>

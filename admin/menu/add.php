@@ -3,12 +3,15 @@ include '../../auth/check.php';
 include '../../db.php';
 include "../../function.php";
 
+$categories = $conn->query("SELECT * FROM categories ORDER BY name");
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nama = $_POST['nama'];
     $deskripsi = $_POST['deskripsi'];
     $harga = $_POST['harga'];
     $stock = $_POST['stock'];
     $status = $_POST['status'];
+    $category_id = $_POST['category_id'] ?? null;
     $gambar = null;
 
     // Handle image upload
@@ -22,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $stmt = $conn->prepare("INSERT INTO menu (nama, deskripsi, harga, stock, status, gambar) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssdiss", $nama, $deskripsi, $harga, $stock, $status, $gambar);
+    $stmt = $conn->prepare("INSERT INTO menu (nama, deskripsi, harga, stock, status, gambar, category_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssdissi", $nama, $deskripsi, $harga, $stock, $status, $gambar, $category_id);
     $stmt->execute();
 
     header("Location: index.php");
@@ -55,6 +58,19 @@ include "../layout/sidebar.php";
                     <label for="harga" class="form-label">Harga (Rp)</label>
                     <input type="number" class="form-control" name="harga" id="harga" step="0.01" required>
                 </div>
+
+                <div class="mb-3">
+                    <label for="">Kategori</label>
+                    <select name="category_id" class="form-select" required>
+                    <option value="">-- Pilih Kategori --</option>
+                    <?php while ($cat = $categories->fetch_assoc()): ?>
+                        <option value="<?= $cat['id'] ?>" <?= (isset($menu) && $menu['category_id'] == $cat['id']) ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($cat['name']) ?>
+                        </option>
+                    <?php endwhile; ?>
+                    </select>
+                </div>
+                
 
                 <div class="mb-3">
                     <label for="gambar" class="form-label">Gambar</label>

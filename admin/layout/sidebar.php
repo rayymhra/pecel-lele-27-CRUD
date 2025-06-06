@@ -16,9 +16,13 @@
       <a href="<?= base_url() ?>admin/contact/index.php" class="list-group-item list-group-item-action">
         <i class="bi bi-geo-alt"></i> Contact
       </a>
-      <a href="<?= base_url() ?>admin/user/index.php" class="list-group-item list-group-item-action">
-        <i class="bi bi-person"></i> Admin
+      <a href="<?= base_url() ?>admin/categories/index.php" class="list-group-item list-group-item-action">
+        <i class="bi bi-tags"></i> Categories
       </a>
+      <a href="<?= base_url() ?>admin/user/index.php" class="list-group-item list-group-item-action">
+        <i class="bi bi-person"></i> Users
+      </a>
+      
     </div>
   </div>
 
