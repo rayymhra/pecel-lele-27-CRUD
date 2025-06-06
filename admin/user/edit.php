@@ -27,7 +27,7 @@ include '../layout/sidebar.php';
 ?>
 
 <div class="container mt-4">
-    <h2 class="fw-bold mb-4">Edit Admin</h2>
+    <h2 class="fw-bold mb-4">Edit Users</h2>
     <form method="POST">
         <div class="mb-3">
             <label>Username:</label>
@@ -44,6 +44,7 @@ include '../layout/sidebar.php';
     <select name="role" class="form-select" required>
         <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
         <option value="staff" <?= $user['role'] === 'staff' ? 'selected' : '' ?>>Staff</option>
+        <option value="customer" <?= $user['role'] === 'customer' ? 'selected' : '' ?>>Customer</option>
     </select>
 </div>
 

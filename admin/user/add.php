@@ -25,7 +25,7 @@ include '../layout/sidebar.php';
 ?>
 
 <div class="container mt-4">
-    <h2 class="fw-bold mb-4">Tambah Admin</h2>
+    <h2 class="fw-bold mb-4">Tambah Users</h2>
     <form method="POST">
         <div class="mb-3">
             <label>Username:</label>
@@ -41,6 +41,7 @@ include '../layout/sidebar.php';
     <label>Role:</label>
     <select name="role" class="form-select" required>
         <option value="admin">Admin</option>
+        <option value="customer">Customer</option>
         <option value="staff" selected>Staff</option>
     </select>
 </div>

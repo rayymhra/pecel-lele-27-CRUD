@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include "../layout/sidebar.php"; ?>
 
 <div class="container mt-4">
-    <h2>Tambah Kategori</h2>
+    <!-- <h2>Tambah Kategori</h2> -->
 
     <?php if ($error): ?>
         <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
@@ -38,20 +38,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
 
-    <form method="POST">
-        <div class="mb-3">
-            <label class="form-label">Nama Kategori</label>
-            <input type="text" name="name" class="form-control" required>
+    <div class="card border-warning">
+        <div class="card-header bg-warning text-dark fw-bold">
+            Tambah Kategori
         </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Nama Kategori</label>
+                    <input type="text" name="name" class="form-control" placeholder="Contoh: Minuman" required>
+                </div>
 
-        <div class="mb-3">
-            <label class="form-label">Deskripsi</label>
-            <textarea name="description" class="form-control"></textarea>
+                <div class="mb-3">
+                    <label class="form-label">Deskripsi</label>
+                    <textarea name="description" class="form-control" rows="3" placeholder="Tuliskan deskripsi kategori..."></textarea>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="index.php" class="btn btn-outline-secondary">← Kembali</a>
+                    <button type="submit" class="btn btn-warning fw-semibold text-dark">Simpan</button>
+                </div>
+            </form>
         </div>
-
-        <button type="submit" class="btn btn-primary">Simpan</button>
-        <a href="index.php" class="btn btn-secondary">Kembali</a>
-    </form>
+    </div>
 </div>
 
 <?php include "../layout/footer.php"; ?>

@@ -63,7 +63,7 @@ $details = $detail_stmt->get_result();
                             <td><?= htmlspecialchars($item['menu_nama']) ?></td>
                             <td>Rp<?= number_format($item['harga'], 0, ',', '.') ?></td>
                             <td><?= $item['qty'] ?></td>
-                            <td>Rp<?= number_format($item['subtotal'], 0, ',', '.') ?></td>
+                            <td>Rp<?= number_format($item['qty'] * $item['harga'], 0, ',', '.') ?></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>

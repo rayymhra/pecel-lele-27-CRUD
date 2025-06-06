@@ -11,9 +11,9 @@ $result = $conn->query("SELECT * FROM users");
 ?>
 
 <div class="container mt-4">
-    <h2 class="fw-bold mb-4">Daftar Admin</h2>
+    <h2 class="fw-bold mb-4">Daftar Users</h2>
     <a href="add.php" class="btn btn-warning mb-3 text-dark fw-semibold">
-        Tambah Admin
+        Tambah Users
     </a>
 
     <div class="table-responsive">

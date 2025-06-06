@@ -45,6 +45,10 @@ include "../layout/sidebar.php";
   <div class="container mt-4">
     <h2>Daftar Pesanan</h2>
     <a href="add.php" class="btn btn-primary mb-3">+ Tambah Pesanan</a>
+    <a href="export_orders_excel.php" class="btn btn-success mb-3">
+  <i class="bi bi-file-earmark-excel-fill"></i> Export Pesanan ke Excel
+</a>
+
 
     <table class="table table-bordered table-striped">
         <thead class="table-warning">
@@ -53,6 +57,7 @@ include "../layout/sidebar.php";
                 <th>Nama Pelanggan</th>
                 <th>Total</th>
                 <th>Tanggal</th>
+                <th>Status</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -65,6 +70,7 @@ include "../layout/sidebar.php";
                         <td><?= htmlspecialchars($order['nama_pelanggan']) ?></td>
                         <td>Rp<?= number_format($order['total'], 0, ',', '.') ?></td>
                         <td><?= $order['tanggal_order'] ?></td>
+                        <td><?= $order['status'] ?></td>
                         <td>
                             <a href="view.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-info">Lihat</a>
                             <a href="delete.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pesanan ini?')">Hapus</a>

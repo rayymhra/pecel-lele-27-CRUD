@@ -39,6 +39,7 @@ while ($row = $details_result->fetch_assoc()) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $customer_name = $_POST['customer_name'];
+    $status = $_POST['status'];
     $menu_ids = $_POST['menu_id'];
     $quantities = $_POST['quantity'];
 
@@ -79,8 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$error) {
         // Update orders table
-        $update_order = $conn->prepare("UPDATE orders SET nama_pelanggan = ?, total = ? WHERE id = ?");
-        $update_order->bind_param("sdi", $customer_name, $total, $order_id);
+        $update_order = $conn->prepare("UPDATE orders SET nama_pelanggan = ?, total = ?, status = ? WHERE id = ?");
+        $update_order->bind_param("sdsi", $customer_name, $total, $status, $order_id);
+
         $update_order->execute();
 
         // Delete old details
@@ -120,6 +122,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label class="form-label">Nama Pelanggan</label>
             <input type="text" name="customer_name" class="form-control" required value="<?= htmlspecialchars($order['nama_pelanggan']) ?>">
         </div>
+
+        <div class="mb-3">
+    <label class="form-label">Status Pesanan</label>
+    <select name="status" class="form-select" required>
+        <option value="pending" <?= $order['status'] === 'pending' ? 'selected' : '' ?>>Pending</option>
+        <option value="diproses" <?= $order['status'] === 'diproses' ? 'selected' : '' ?>>Diproses</option>
+        <option value="selesai" <?= $order['status'] === 'selesai' ? 'selected' : '' ?>>Selesai</option>
+        <option value="dibatalkan" <?= $order['status'] === 'dibatalkan' ? 'selected' : '' ?>>Dibatalkan</option>
+    </select>
+</div>
 
         <div id="menu-list">
             <?php foreach ($existing_details as $detail): ?>
