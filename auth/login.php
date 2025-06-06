@@ -22,12 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['role'] = $user['role'];
 
             if ($user['role'] === 'admin') {
-                header("Location: ../admin/index.php");
-            } elseif ($user['role'] === 'staff') {
-                header("Location: ../staff/index.php");
-            } else {
-                $error = "Role invalid.";
-            }
+    header("Location: ../admin/index.php");
+} elseif ($user['role'] === 'staff') {
+    header("Location: ../staff/index.php");
+} elseif ($user['role'] === 'customer') {
+    header("Location: ../index.php"); // or wherever your customer homepage is
+} else {
+    $error = "Role invalid.";
+}
+
             exit;
         } else {
             $error = "Invalid password.";
@@ -111,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-card">
   <div class="text-center mb-4">
     <div class="brand-logo">Pecel Lele 27</div>
-    <p class="text-muted">Admin Login</p>
+    <p class="text-muted">Login</p>
   </div>
 
   <?php if ($error): ?>
@@ -134,6 +137,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="password" class="form-control" placeholder="Masukkan password" required>
       </div>
     </div>
+
+    <div class="my-3">
+      <p>Belum punya akun? <a href="register.php" class="text-warning">Daftar Sekarang!</a></p>
+    </div>
+    
 
     <button type="submit" class="btn btn-yellow w-100 mt-3">Login</button>
   </form>

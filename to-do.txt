@@ -27,10 +27,10 @@ CRUD
 - contact
 [v]{v} edit -> can't be deleted, only uses 1 data for each lokasi, jam buka, catatan
 -categories
-[] list
-[] add
-[] edit
-[] delete
+[v]{} list
+[v]{} add
+[v]{} edit
+[v]{} delete
 
 # staff
 - dashboard
@@ -42,7 +42,7 @@ CRUD
 [v] edit menu
 
 
-[] order linking
-after order linking let's build something that would get me the extra grade
+[v]
+{v} register
 
 umm but don't you think order linking is kind of not needed since people are buying from whatsapp, and if i add linking that means everyone who wants to order has to register first but that would make the system complicated for the customer who mostly are locals mom where they don't have time to even registering into website. i guess it's better to make the register to be an optional thing to do. do you have other ideas that would still get me extra grade and i don't really want to mess with the order page again because it's getting to complex to mess. remember that the teacher is more like the quantity people. do you have other alternatives pages or anything to add so that i would get extra grade? 
