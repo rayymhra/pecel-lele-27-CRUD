@@ -41,6 +41,12 @@ CRUD
 - menu
 [v]{} list
 [v]{} edit
+-pesanan
+[v]{v} list
+[v]{v} add
+[v]{v} edit
+[v]{v} view
+[v] delete
 
 [v] edit menu
 

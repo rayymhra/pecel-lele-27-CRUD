@@ -107,61 +107,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include "../layout/navbar.php"; ?>
 <?php include "../layout/sidebar.php"; ?>
 
-<div class="container mt-4">
-    <h2>Edit Pesanan</h2>
-    <a href="index.php" class="btn btn-secondary mb-3">← Kembali</a>
-
-    <?php if ($error): ?>
-        <div class="alert alert-danger"><?= $error ?></div>
-    <?php elseif ($success): ?>
-        <div class="alert alert-success"><?= $success ?></div>
-    <?php endif; ?>
-
-    <form method="POST">
-        <div class="mb-3">
-            <label class="form-label">Nama Pelanggan</label>
-            <input type="text" name="customer_name" class="form-control" required value="<?= htmlspecialchars($order['nama_pelanggan']) ?>">
+<div class="container mt-5">
+    <div class="card border-warning shadow-sm">
+        <div class="card-header bg-warning fw-bold">
+            Edit Pesanan
         </div>
+        <div class="card-body">
 
-        <div class="mb-3">
-    <label class="form-label">Status Pesanan</label>
-    <select name="status" class="form-select" required>
-        <option value="pending" <?= $order['status'] === 'pending' ? 'selected' : '' ?>>Pending</option>
-        <option value="diproses" <?= $order['status'] === 'diproses' ? 'selected' : '' ?>>Diproses</option>
-        <option value="selesai" <?= $order['status'] === 'selesai' ? 'selected' : '' ?>>Selesai</option>
-        <option value="dibatalkan" <?= $order['status'] === 'dibatalkan' ? 'selected' : '' ?>>Dibatalkan</option>
-    </select>
-</div>
+            <a href="index.php" class="btn btn-secondary mb-3">
+                <i class="bi bi-arrow-left"></i> Kembali
+            </a>
 
-        <div id="menu-list">
-            <?php foreach ($existing_details as $detail): ?>
-                <div class="menu-item row g-2 mb-2">
-                    <div class="col-md-6">
-                        <select name="menu_id[]" class="form-select" required>
-                            <option value="">-- Pilih Menu --</option>
-                            <?php
-                            $menus->data_seek(0); // Reset pointer
-                            while ($menu = $menus->fetch_assoc()):
-                            ?>
-                                <option value="<?= $menu['id'] ?>" <?= $menu['id'] == $detail['menu_id'] ? 'selected' : '' ?>>
-                                    <?= htmlspecialchars($menu['nama']) ?> (stock: <?= $menu['stock'] ?>)
-                                </option>
-                            <?php endwhile; ?>
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="number" name="quantity[]" class="form-control" min="1" value="<?= $detail['qty'] ?>" required>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="button" class="btn btn-danger btn-remove">×</button>
-                    </div>
+            <?php if ($error): ?>
+                <div class="alert alert-danger"><?= $error ?></div>
+            <?php elseif ($success): ?>
+                <div class="alert alert-success"><?= $success ?></div>
+            <?php endif; ?>
+
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Nama Pelanggan</label>
+                    <input type="text" name="customer_name" class="form-control" required value="<?= htmlspecialchars($order['nama_pelanggan']) ?>">
                 </div>
-            <?php endforeach; ?>
-        </div>
 
-        <button type="button" id="add-menu" class="btn btn-secondary mb-3">+ Tambah Menu</button><br>
-        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-    </form>
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Status Pesanan</label>
+                    <select name="status" class="form-select" required>
+                        <option value="pending" <?= $order['status'] === 'pending' ? 'selected' : '' ?>>Pending</option>
+                        <option value="diproses" <?= $order['status'] === 'diproses' ? 'selected' : '' ?>>Diproses</option>
+                        <option value="selesai" <?= $order['status'] === 'selesai' ? 'selected' : '' ?>>Selesai</option>
+                        <option value="dibatalkan" <?= $order['status'] === 'dibatalkan' ? 'selected' : '' ?>>Dibatalkan</option>
+                    </select>
+                </div>
+
+                <div id="menu-list">
+                    <?php foreach ($existing_details as $detail): ?>
+                        <div class="menu-item row g-2 mb-2">
+                            <div class="col-md-6">
+                                <select name="menu_id[]" class="form-select" required>
+                                    <option value="">-- Pilih Menu --</option>
+                                    <?php
+                                    $menus->data_seek(0); // Reset pointer
+                                    while ($menu = $menus->fetch_assoc()):
+                                    ?>
+                                        <option value="<?= $menu['id'] ?>" <?= $menu['id'] == $detail['menu_id'] ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($menu['nama']) ?> (stock: <?= $menu['stock'] ?>)
+                                        </option>
+                                    <?php endwhile; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" name="quantity[]" class="form-control" min="1" value="<?= $detail['qty'] ?>" required>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-start">
+                                <button type="button" class="btn btn-danger btn-remove">×</button>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <button type="button" id="add-menu" class="btn btn-outline-secondary mb-3">
+                    + Tambah Menu
+                </button><br>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Simpan Perubahan
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>

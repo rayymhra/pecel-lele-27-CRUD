@@ -64,44 +64,53 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include "../layout/navbar.php"; ?>
 <?php include "../layout/sidebar.php"; ?>
 
-<div class="container mt-4">
-    <h2>Tambah Pesanan</h2>
-
-    <?php if ($error): ?>
-        <div class="alert alert-danger"><?= $error ?></div>
-    <?php elseif ($success): ?>
-        <div class="alert alert-success"><?= $success ?></div>
-    <?php endif; ?>
-
-    <form method="POST">
-        <div class="mb-3">
-            <label class="form-label">Nama Pelanggan</label>
-            <input type="text" name="customer_name" class="form-control" required>
+<div class="container mt-5">
+    <div class="card border-warning shadow">
+        <div class="card-header bg-warning text-dark fw-bold">
+            Tambah Pesanan
         </div>
+        <div class="card-body">
+            <?php if ($error): ?>
+                <div class="alert alert-danger"><?= $error ?></div>
+            <?php elseif ($success): ?>
+                <div class="alert alert-success"><?= $success ?></div>
+            <?php endif; ?>
 
-        <div id="menu-list">
-            <div class="menu-item row g-2 mb-2">
-                <div class="col-md-6">
-                    <select name="menu_id[]" class="form-select" required>
-                        <option value="">-- Pilih Menu --</option>
-                        <?php while ($row = $menus->fetch_assoc()): ?>
-                            <option value="<?= $row['id'] ?>"><?= htmlspecialchars($row['nama']) ?> (stock: <?= $row['stock'] ?>)</option>
-                        <?php endwhile; ?>
-                    </select>
+            <form method="POST">
+                <div class="mb-3">
+                    <label class="form-label">Nama Pelanggan</label>
+                    <input type="text" name="customer_name" class="form-control" required>
                 </div>
-                <div class="col-md-4">
-                    <input type="number" name="quantity[]" class="form-control" min="1" placeholder="Jumlah" required>
+
+                <label class="form-label">Daftar Menu</label>
+                <div id="menu-list">
+                    <div class="menu-item row g-2 mb-2">
+                        <div class="col-md-6">
+                            <select name="menu_id[]" class="form-select" required>
+                                <option value="">-- Pilih Menu --</option>
+                                <?php while ($row = $menus->fetch_assoc()): ?>
+                                    <option value="<?= $row['id'] ?>"><?= htmlspecialchars($row['nama']) ?> (stock: <?= $row['stock'] ?>)</option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" name="quantity[]" class="form-control" min="1" placeholder="Jumlah" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger btn-remove w-100">×</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <button type="button" class="btn btn-danger btn-remove">×</button>
+
+                <button type="button" id="add-menu" class="btn btn-warning">+ Tambah Menu</button>
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-outline-success">Simpan Pesanan</button>
+                    <a href="index.php" class="btn btn-secondary ms-1">Kembali</a>
                 </div>
-            </div>
+                
+            </form>
         </div>
-
-        <button type="button" id="add-menu" class="btn btn-secondary mb-3">+ Tambah Menu</button>
-        <br>
-        <button type="submit" class="btn btn-primary">Simpan Pesanan</button>
-    </form>
+    </div>
 </div>
 
 <script>

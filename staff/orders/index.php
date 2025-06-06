@@ -42,50 +42,76 @@ include "../layout/sidebar.php";
 </head>
 <body>
 
-  <div class="container mt-4">
-    <h2>Daftar Pesanan</h2>
-    <a href="add.php" class="btn btn-primary mb-3">+ Tambah Pesanan</a>
-    <a href="export_orders_excel.php" class="btn btn-success mb-3">
-  <i class="bi bi-file-earmark-excel-fill"></i> Export Pesanan ke Excel
-</a>
+  <div class="container mt-5">
+    
+        <h2 class="fw-bold mb-4">
+            Daftar Pesanan
+        </h2>
+        
+            <div class="mb-3 d-flex flex-wrap gap-2">
+                <a href="add.php" class="btn btn-warning">
+                    <i class="bi bi-plus-circle"></i> Tambah Pesanan
+                </a>
+                <a href="export_orders_excel.php" class="btn btn-success">
+                    <i class="bi bi-file-earmark-excel-fill"></i> Export Pesanan ke Excel
+                </a>
+            </div>
 
-
-    <table class="table table-bordered table-striped">
-        <thead class="table-warning">
-            <tr>
-                <th>No</th>
-                <th>Nama Pelanggan</th>
-                <th>Total</th>
-                <th>Tanggal</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php if ($orders->num_rows > 0): ?>
-                <?php $no = 1; ?>
-                <?php while ($order = $orders->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $no++ ?></td>
-                        <td><?= htmlspecialchars($order['nama_pelanggan']) ?></td>
-                        <td>Rp<?= number_format($order['total'], 0, ',', '.') ?></td>
-                        <td><?= $order['tanggal_order'] ?></td>
-                        <td><?= $order['status'] ?></td>
-                        <td>
-                            <a href="view.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-info">Lihat</a>
-                            <a href="delete.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pesanan ini?')">Hapus</a>
-                            <a href="edit.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-pencil-square"></i> Edit
-                            </a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr><td colspan="5" class="text-center">Belum ada pesanan</td></tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped align-middle">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Pelanggan</th>
+                            <th>Total</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($orders->num_rows > 0): ?>
+                            <?php $no = 1; ?>
+                            <?php while ($order = $orders->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= htmlspecialchars($order['nama_pelanggan']) ?></td>
+                                    <td>Rp<?= number_format($order['total'], 0, ',', '.') ?></td>
+                                    <td><?= $order['tanggal_order'] ?></td>
+                                    <td>
+                                        <?php if ($order['status'] == 'pending'): ?>
+                                            <span class="badge bg-secondary">Pending</span>
+                                        <?php elseif ($order['status'] == 'selesai'): ?>
+                                            <span class="badge bg-success">Selesai</span>
+                                        <?php else: ?>
+                                            <span class="badge bg-dark"><?= $order['status'] ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-wrap gap-1">
+                                            <a href="view.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-info">
+                                                <i class="bi bi-eye"></i> Lihat
+                                            </a>
+                                            <a href="edit.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-pencil-square"></i> Edit
+                                            </a>
+                                            <a href="delete.php?id=<?= $order['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus pesanan ini?')">
+                                                <i class="bi bi-trash"></i> Hapus
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="6" class="text-center">Belum ada pesanan</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+          
 </div>
+
 
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"

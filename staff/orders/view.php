@@ -37,39 +37,48 @@ $details = $detail_stmt->get_result();
 <?php include "../layout/navbar.php"; ?>
 <?php include "../layout/sidebar.php"; ?>
 
-<div class="container mt-4">
-    <h2>Detail Pesanan</h2>
-    <a href="index.php" class="btn btn-secondary mb-3">← Kembali</a>
-
-    <div class="card">
+<div class="container mt-5">
+    <div class="card border-warning shadow-sm">
+        <div class="card-header bg-warning fw-bold">
+            Detail Pesanan
+        </div>
         <div class="card-body">
+            <a href="index.php" class="btn btn-secondary mb-3">
+                <i class="bi bi-arrow-left"></i> Kembali
+            </a>
+
             <p><strong>Nama Pelanggan:</strong> <?= htmlspecialchars($order['nama_pelanggan']) ?></p>
             <p><strong>Tanggal Pesan:</strong> <?= $order['tanggal_order'] ?></p>
-            <p><strong>Total:</strong> Rp<?= number_format($order['total'], 0, ',', '.') ?></p>
+            <p><strong>Total:</strong> 
+                <span class="badge bg-success fs-6">Rp<?= number_format($order['total'], 0, ',', '.') ?></span>
+            </p>
 
-            <h5 class="mt-4">Rincian Menu:</h5>
-            <table class="table table-bordered">
-                <thead class="table-light">
-                    <tr>
-                        <th>Menu</th>
-                        <th>Harga</th>
-                        <th>Jumlah</th>
-                        <th>Subtotal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($item = $details->fetch_assoc()): ?>
+            <h5 class="mt-4 mb-3">Rincian Menu:</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped align-middle">
+                    <thead class="table-warning">
                         <tr>
-                            <td><?= htmlspecialchars($item['menu_nama']) ?></td>
-                            <td>Rp<?= number_format($item['harga'], 0, ',', '.') ?></td>
-                            <td><?= $item['qty'] ?></td>
-                            <td>Rp<?= number_format($item['qty'] * $item['harga'], 0, ',', '.') ?></td>
+                            <th>Menu</th>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
+                            <th>Subtotal</th>
                         </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php while ($item = $details->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($item['menu_nama']) ?></td>
+                                <td>Rp<?= number_format($item['harga'], 0, ',', '.') ?></td>
+                                <td><?= $item['qty'] ?></td>
+                                <td>Rp<?= number_format($item['qty'] * $item['harga'], 0, ',', '.') ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
 
 <?php include "../layout/footer.php"; ?>
