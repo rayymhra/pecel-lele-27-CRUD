@@ -1,6 +1,8 @@
 <?php
 include '../../auth/check.php';
 include '../../db.php';
+include "../../function.php";
+
 
 $result = $conn->query("SELECT * FROM testimoni ORDER BY id DESC");
 

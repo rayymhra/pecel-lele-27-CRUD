@@ -1,6 +1,8 @@
 <?php
 include '../../auth/check.php';
 include '../../db.php';
+include "../../function.php";
+
 
 $result = $conn->query("SELECT * FROM kontak WHERE id = 1");
 $kontak = $result->fetch_assoc();

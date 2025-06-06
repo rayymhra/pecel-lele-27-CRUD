@@ -1,6 +1,8 @@
 <?php
 include '../../auth/check.php';
 include '../../db.php';
+include "../../function.php";
+
 
 $id = $_GET['id'];
 
