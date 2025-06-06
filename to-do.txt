@@ -4,29 +4,32 @@ CRUD
 # admin
 - auth
 [v]{} login
-[]{} logout
+[v]{} logout
+- dashboard
+[]{} index
+[v]{v} sidebar
+[v]{v} navbar
+- menu
+[v]{v} list
+[v]{v} add
+[v]{v} edit
+[v]{v} delete
+- pesanan
+[v]{v} list
+[v]{v} add
+[v]{v} edit
+[v]{v} delete
+- testimonial
+[v]{v} list
+[v]{v} add
+[v]{v} edit
+[v]{v} delete
+- contact
+[v]{v} edit -> can't be deleted, only uses 1 data for each lokasi, jam buka, catatan
+
+# staff
 - dashboard
 []{} index
 []{} sidebar
 []{} navbar
-- menu
-[v]{} list
-[v]{} add
-[v]{} edit
-[v]{} delete
-- pesanan
-[v]{} list
-[v]{} add
-[v]{} edit
-[v]{} delete
-- testimonial
-[v]{} list
-[v]{} add
-[v]{} edit
-[v]{} delete
-- contact
-[]{} edit -> can't be deleted, only uses 1 data for each lokasi, jam buka, catatan
-
-# staff
-[] then make the order management
 

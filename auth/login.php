@@ -49,16 +49,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+
+    <style>
+    body {
+      background-color: #fffbea;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    .brand-logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #facc15;
+    }
+
+    .btn-yellow {
+      background-color: #facc15;
+      border: none;
+      color: #000;
+    }
+
+    .btn-yellow:hover {
+      background-color: #eab308;
+      color: #000;
+    }
+
+    .form-label {
+      font-weight: 500;
+    }
+
+    .input-group-text {
+      background-color: #fef3c7;
+      border: none;
+    }
+
+    .form-control:focus {
+      border-color: #facc15;
+      box-shadow: 0 0 0 0.2rem rgba(250, 204, 21, 0.25);
+    }
+  </style>
   </head>
 <body>
-    <h2>Login</h2>
-    <?php if ($error): ?><p style="color:red"><?= $error ?></p><?php endif; ?>
-    <form method="POST">
-        <label>Username:</label><br>
-        <input type="text" name="username" required><br><br>
-        <label>Password:</label><br>
-        <input type="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
+    <div class="login-card">
+  <div class="text-center mb-4">
+    <div class="brand-logo">Pecel Lele 27</div>
+    <p class="text-muted">Admin Login</p>
+  </div>
+
+  <?php if ($error): ?>
+    <div class="alert alert-danger text-center"><?= htmlspecialchars($error) ?></div>
+  <?php endif; ?>
+
+  <form method="POST">
+    <div class="mb-3">
+      <label class="form-label">Username</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-person"></i></span>
+        <input type="text" name="username" class="form-control" placeholder="Masukkan username" required>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+        <input type="password" name="password" class="form-control" placeholder="Masukkan password" required>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-yellow w-100 mt-3">Login</button>
+  </form>
+</div>
 </body>
 </html>
