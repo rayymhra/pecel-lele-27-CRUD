@@ -39,8 +39,8 @@ CRUD
 [v]{v} navbar
 [v] export to Excel
 - menu
-[v]{} list
-[v]{} edit
+[v]{v} list
+[v]{v} edit
 -pesanan
 [v]{v} list
 [v]{v} add
