@@ -56,7 +56,8 @@ CRUD
 
 
 OVERALL TUGAS
-[] membuat crud website
-[] usecase diagram
-[] activity diagram
-[] erd
+[v] membuat crud website
+[] explanation video of the website
+[v] usecase diagram
+[v] activity diagram
+[v] erd
