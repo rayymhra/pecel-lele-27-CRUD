@@ -1,12 +1,12 @@
 CRUD
-[] landing page using database
+[v] landing page using database
 
 # admin
 - auth
 [v]{v} login
 [v] logout
 - dashboard
-[]{} index
+[v]{v} index
 [v]{v} sidebar
 [v]{v} navbar
 - menu
@@ -53,3 +53,10 @@ CRUD
 
 [v]{v} register
  
+
+
+OVERALL TUGAS
+[] membuat crud website
+[] usecase diagram
+[] activity diagram
+[] erd

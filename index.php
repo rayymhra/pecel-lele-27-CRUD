@@ -1,3 +1,18 @@
+<?php
+
+include "db.php";
+include "function.php";
+
+$menu = mysqli_query($conn, "SELECT * FROM menu");
+$pesanan = mysqli_query($conn, "SELECT * FROM pesanan");
+$testimoni = mysqli_query($conn, "SELECT * FROM testimoni");
+$kontak = mysqli_query($conn, "SELECT * FROM kontak");
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -83,58 +98,17 @@
           Menu andalan yang tersedia setiap hari
         </p>
         <div class="row mt-4">
+          <?php foreach ($menu as $m):  ?>
           <div class="col-4">
             <div class="card">
               <div class="card-body">
-                <img src="assets/img/lele.jpg" alt="" class="w-100 rounded" />
-                <h5>Pecel Lele</h5>
+                <img src="uploads/<?= $m["gambar"] ?>" alt="" class="w-100 rounded" />
+                <h5><?= $m["nama"] ?></h5>
               </div>
             </div>
           </div>
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <img
-                  src="assets/img/pecel ayam.jpg"
-                  alt=""
-                  class="w-100 rounded"
-                />
-                <h5>Pecel Ayam</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <img
-                  src="assets/img/ayam bakar.jpg"
-                  alt=""
-                  class="w-100 rounded"
-                />
-                <h5>Ayam Bakar</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <img
-                  src="assets/img/ayam penyet.jpg"
-                  alt=""
-                  class="w-100 rounded"
-                />
-                <h5>Ayam Penyet</h5>
-              </div>
-            </div>
-          </div>
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <img src="assets/img/soto.jpg" alt="" class="w-100 rounded" />
-                <h5>Soto Ayam</h5>
-              </div>
-            </div>
-          </div>
+          <?php endforeach ?>
+          
         </div>
       </div>
     </div>
@@ -147,54 +121,14 @@
         </p>
 
         <div class="row">
+          <?php foreach ($pesanan as $p):  ?>
           <div class="col-4 pesanan-item">
             <div class="pesanan-item-card">
-              <img src="assets/img/tumpeng.jpg" alt="" class="w-100" />
-              <h5>Tumpeng</h5>
+              <img src="uploads/<?= $p["gambar"] ?>" alt="" class="w-100" />
+              <h5><?= $p["nama"] ?></h5>
             </div>
           </div>
-          <div class="col-4 pesanan-item">
-            <div class="pesanan-item-card">
-              <img src="assets/img/bekakak.jpg" alt="" class="w-100" />
-              <h5>Bekakak</h5>
-            </div>
-          </div>
-          <div class="col-4 pesanan-item">
-            <div class="pesanan-item-card">
-              <img src="assets/img/ultah.jpg" alt="" class="w-100" />
-              <h5>Ulang Tahun</h5>
-            </div>
-          </div>
-          <div class="col-4 pesanan-item">
-            <div class="pesanan-item-card">
-              <img src="assets/img/nasi kotak.jpg" alt="" class="w-100" />
-              <h5>Nasi Kotak</h5>
-            </div>
-          </div>
-          <div class="col-4 pesanan-item">
-            <div class="pesanan-item-card">
-              <img src="assets/img/nasi kuning.jpg" alt="" class="w-100" />
-              <h5>Nasi Kuning</h5>
-            </div>
-          </div>
-          <div class="col-4 pesanan-item">
-            <div class="pesanan-item-card">
-              <img src="assets/img/tumpeng mini.jpg" alt="" class="w-100" />
-              <h5>Tumpeng Mini</h5>
-            </div>
-          </div>
-          <div class="col-4 pesanan-item">
-            <div class="pesanan-item-card">
-              <img src="assets/img/bento.jpg" alt="" class="w-100" />
-              <h5>Bento</h5>
-            </div>
-          </div>
-          <div class="col-4 pesanan-item">
-            <div class="pesanan-item-card">
-              <img src="assets/img/rice bowl.jpg" alt="" class="w-100" />
-              <h5>Rice Bowl</h5>
-            </div>
-          </div>
+          <?php endforeach ?>
         </div>
       </div>
     </div>
@@ -279,44 +213,14 @@
         </div> -->
 
         <div class="row g-4 mt-4 testimonials">
+          <?php foreach ($testimoni as $t):  ?>
           <div class="col-md-4">
             <div class="p-3 shadow rounded bg-white card">
-              <p>"Masakannya selalu fresh dan enak. Paling suka sama sambel gepreknya!"</p>
-              <small class="text-muted">— Mama Azka</small>
+              <p>"<?= $t["isi"] ?>"</p>
+              <small class="text-muted">— <?= $t["nama"] ?></small>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="p-3 shadow rounded bg-white card">
-              <p>"Order nasi kotak buat acara kantor, semua puas! Terima kasih Mama Rayya."</p>
-              <small class="text-muted">— Pak Anton</small>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 shadow rounded bg-white card">
-              <p>"Sotonya gurih dan porsinya banyak. Orderan sampai tepat waktu juga."</p>
-              <small class="text-muted">— Bu Almira</small>
-            </div>
-          </div>
-        </div>
-        <div class="row g-4 mt-4 testimonials">
-          <div class="col-md-4">
-            <div class="p-3 shadow rounded bg-white card">
-              <p>"Rasa ayam bakarnya itu loh... bumbunya meresap banget! dagingnya juga empuk. Anak-anak juga suka."</p>
-              <small class="text-muted">— Bu Rita</small>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 shadow rounded bg-white card">
-              <p>"Waktu selametan kemarin, pesen tumpeng di Mama Rayya. Tampilannya cantik dan rasanya mantap."</p>
-              <small class="text-muted">— Pak Wiwin</small>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="p-3 shadow rounded bg-white card">
-              <p>Sambalnya juara, bikin pengen nambah terus. Pelayanannya juga cepat dan ramah.</p>
-              <small class="text-muted">— Bu Dewi</small>
-            </div>
-          </div>
+          <?php endforeach ?>
         </div>
       </div>
     </div>
@@ -333,6 +237,7 @@
             </iframe> -->
             <div style="position: relative;"><div style="position: relative; padding-bottom: 75%; height: 0; overflow: hidden;"><iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" loading="lazy" allowfullscreen src="https://maps.google.com/maps?q=Puri+Harmoni+9+Ext%2C+Blk.+A10+No.27%2C+Cikahuripan%2C+Kec.+Klapanunggal%2C+Kabupaten+Bogor%2C+Jawa+Barat+16710&output=embed"></iframe></div><a href="https://mapembeds.com" rel="noopener" target="_blank" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;">mapembeds.com</a></div>
           </div>
+          <?php foreach ($kontak as $k):  ?>
           <div class="col-md-6">
             <h5>Kontak</h5>
             <p><strong>WhatsApp:</strong></p>
@@ -343,10 +248,11 @@
               <strong class="mt-3">Lokasi</strong>
             </div>
             
-            <p>Puri Harmoni 9 Ext, Blk. A10 No.27, Cikahuripan, Kec. Klapanunggal, Kabupaten Bogor</p>
-            <p class="mt-3"><strong>Jam Buka:</strong><br>Setiap hari, pukul 09.00 – Habis</p>
-            <p><strong>Catatan:</strong><br>Kami melayani pesanan langsung dan untuk acara spesial. Silakan hubungi lebih awal untuk pesanan dalam jumlah besar.</p>
+            <p><?= $k["lokasi"] ?></p>
+            <p class="mt-3"><strong>Jam Buka:</strong><br><?= $k["jam_buka"] ?></p>
+            <p><strong>Catatan:</strong><br><?= $k["catatan"] ?></p>
           </div>
+          <?php endforeach ?>
         </div>
       </div>
     </div>
